@@ -6,4 +6,22 @@
 
 </div>
 
+<div>
+    <h1>List of all users!</h1>
+    {% if users_dir %}
+        <ol>
+            {% for user in users_dir %}
+                <li>User info</li>
+                    <ul>
+                        <li>Username: {{ user.username }}</li>
+                        <li>Email: {{ user.email }}</li>
+                        <li>Portfolio site: {{ users_dir_ext.portfolio_site }}</li>
+                    </ul>
+            {% endfor %}
+        </ol> 
+    {% else %}
+        <p>No user registred</p>
+    {% endif %}
+</div>
+
 {% endblock %}

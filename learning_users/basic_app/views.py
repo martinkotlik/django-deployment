@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from basic_app.forms import UserForm, UserProfileInfoForm
+from basic_app.models import User, UserProfileInfo
 
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect, HttpResponse
@@ -8,7 +9,10 @@ from django.contrib.auth.decorators import login_required
 # Create your views here.
 
 def index(request):
-    return render(request, 'basic_app/index.html')
+    all_users = User.objects.all()
+    all_users_ext = UserProfileInfo.objects.all()
+    users_dir = {'users_dir': all_users, 'user_dir_ext': all_users_ext}
+    return render(request, 'basic_app/index.html', users_dir)
 
 @login_required
 def special(request):
